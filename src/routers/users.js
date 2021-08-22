@@ -159,12 +159,10 @@ router.patch('/user/:id', auth, async (req, res) => {
 
 //logging out the user
 router.post('/user/logout', auth, async (req, res) => {
-    console.log('here')
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
             return token.token !== req.token
         })
-        console.log(req.user.tokens.length)
         await req.user.save()
         res.status(200).send({
             Status: 'Success'
@@ -179,7 +177,9 @@ router.post('/user/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
         await req.user.save()
-        res.send()
+        res.send({
+            Status:'Success'
+        })
     } catch (e) {
         res.status(500).send()
     }

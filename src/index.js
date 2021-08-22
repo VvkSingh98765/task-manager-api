@@ -9,10 +9,11 @@ const multer=require('multer')
 const port = process.env.PORT
 const app = express()
 
-console.log(process.env.JWT_SECRET_KEY)
-console.log(process.env.USER)
-console.log(process.env.MONGODB_URL)
-
+app.get('',(req,res)=>{
+    res.send({
+        info:'Please visit:'+'https://github.com/VvkSingh98765/task-manager-api'
+    })
+})
 
 const uploads=multer({
     dest:'images',

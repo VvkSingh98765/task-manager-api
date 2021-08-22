@@ -94,7 +94,6 @@ userSchema.statics.findByCredentials=async(email,password)=>{
 
 //Generating authentication token 
 userSchema.methods.generateAuthToken=async function(){
-    console.log(process.env.JWT_SECRET_KEY)
     const user=this
     const token=await jwt.sign({id:user._id.toString()},process.env.JWT_SECRET_KEY,{expiresIn:'30 days'})
     user.tokens=user.tokens.concat({token})
@@ -106,10 +105,8 @@ userSchema.methods.generateAuthToken=async function(){
 
 //Hashing the plain text password before saving -using mongoose middleware
 userSchema.pre('save',async function(next){
-    console.log('saving user')
     const user=this
     if(user.isModified('password')){
-        console.log('here')
         user.password=await bcryptjs.hash(user.password,8)
     }
     next()
