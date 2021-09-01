@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "startDB": "/Users/Public/mongodb/bin/mongod --dbpath=/Users/Public/mongodb-data"
+    "startDB": "/Users/Public/mongodb/bin/mongod --dbpath=/Users/Public/mongodb-data",
+    "test": " env-cmd -f ./config/dev.env jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +27,8 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.12"
+    "jest": "^23.6.0",
+    "nodemon": "^2.0.12",
+    "supertest": "^3.4.1"
   }
 }
